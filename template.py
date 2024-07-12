@@ -10,7 +10,9 @@ list_of_files = [
     "utils/actions.py",
     ".env",
     "requirements.txt",
-    "app.py"
+    "app.py",
+    "static/css/style.css",
+    "static/js/scripts.js.css"
 ]
 
 
