@@ -1,7 +1,6 @@
 create database YRCBloodRequest;
 use YRCBloodRequest;
 
-
 create table Address_ID ( 
 address_id varchar(10), 
 pincode int NOT NULL, 
@@ -33,7 +32,7 @@ age int,
 blood_grp varchar(10) NOT NULL,
 admitted_hospital varchar(100),
 contact_number int,
-attendent_name varchar(100),
+attendant_name varchar(100),
 hospital_address varchar(200),
 due_date date,
 reason varchar(150),
