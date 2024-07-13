@@ -21,6 +21,6 @@ load_dotenv(path.join(basedir,".env"))
 # and database URI.
 class Config:
     SECRET_KEY = environ.get('SECRET_KEY') #generate with secrets module and secrets.token_hex()
-    SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URI')
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:Vishvaa_vsk123@127.0.0.1:3306/YRCBloodRequest" #environ.get('DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
