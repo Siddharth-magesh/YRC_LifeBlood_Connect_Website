@@ -4,6 +4,7 @@ from flask import Flask
 from .extensions import db
 from .config import Config
 from .routes.main import main
+from .routes.admin import admin
 
 def create_app(config_class = Config):
     """
@@ -22,6 +23,7 @@ def create_app(config_class = Config):
     db.init_app(app)
 
     app.register_blueprint(main)
+    app.register_blueprint(admin)
 
     with app.app_context():
         db.create_all()
