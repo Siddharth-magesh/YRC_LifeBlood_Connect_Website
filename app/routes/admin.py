@@ -94,6 +94,35 @@ def login():
             flash("Username or password doesn't exists!")
     return render_template("admin/index.html")
 
+@admin.route("/signup",methods=['GET','POST'])
+def signup():
+    if request.method == "POST":
+        username,email,passwd,repasswd = request.form['adminName'],request.form['adminEmail'],request.form['adminPass'],request.form['adminRePass']
+        if not db.session.query(Admin).filter_by(admin_username=username).scalar():
+            if repasswd == passwd:
+                hashed_passwd = generate_password_hash(passwd,method="pbkdf2:sha256")
+                try:
+                    admin_id = "AM"+"".join(random.sample(string.ascii_uppercase+string.digits,k=6))
+                    new_admin = Admin(
+                        admin_id = admin_id,
+                        admin_name = email,
+                        admin_username = username,
+                        admin_password = hashed_passwd
+                    )
+                    db.session.add(new_admin)
+                    db.session.commit()
+                except Exception as e:
+                    flash(e)
+            else:
+                flash("Passwords doesn't match!")
+        else:
+            flash("Username already exists!")
+    return render_template("admin/index.html")
+
+@admin.route("/dashboard",methods=['GET','POST'])
+def dashboard():
+    username = session.get('adminName')
+    return f"<h1> Welcome {username}! </h1>"
 
 @admin.route("/add_donor_details",methods=['GET','POST'])
 def add_donor_csv():

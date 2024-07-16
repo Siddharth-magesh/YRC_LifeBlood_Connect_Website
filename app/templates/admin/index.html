@@ -16,38 +16,43 @@
         <div class="forms-container">
             <div class="sigin-signup">
                 <!-- Sign-in form -->
-                <form action="#" class="sign-in-form">
+                <form action="{{ url_for('admin.login')}}" method="post" class="sign-in-form">
                     <h2 class="title">Sign in</h2>
                     <!-- Input field for username -->
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username">
+                        <input type="text" placeholder="Username" name="adminName">
                     </div>
                     <!-- Input field for password -->
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="text" placeholder="Password">
+                        <input type="password" placeholder="Password" name="adminPass">
                     </div>
                     <!-- Sign-in button -->
                     <input type="submit" value="Login" class="btn solid">
                 </form>
                 <!-- Sign-up form -->
-                <form action="#" class="sign-up-form">
+                <form action="{{ url_for('admin.signup')}}" method="post" class="sign-up-form">
                     <h2 class="title">Sign up</h2>
                     <!-- Input field for username -->
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username">
+                        <input type="text" placeholder="Username" name="adminName">
                     </div>
                     <!-- Input field for email -->
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="text" placeholder="Email">
+                        <input type="email" placeholder="Email" name="adminEmail">
                     </div>
                     <!-- Input field for password -->
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="text" placeholder="Password">
+                        <input type="password" placeholder="Password" name="adminPass">
+                    </div>
+                    <!-- Retype password -->
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Retype Password" name="adminRePass">
                     </div>
                     <!-- Sign-up button -->
                     <input type="submit" value="Sign up" class="btn solid">
