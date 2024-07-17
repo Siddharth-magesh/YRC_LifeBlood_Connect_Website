@@ -16,17 +16,17 @@
         <div class="forms-container">
             <div class="sigin-signup">
                 <!-- Sign-in form -->
-                <form action="{{ url_for('admin.login')}}" method="post" class="sign-in-form">
+                <form action="{{ url_for('admin.login')}}" method="post" class="sign-in-form" aria-required="true">
                     <h2 class="title">Sign in</h2>
                     <!-- Input field for username -->
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" name="adminName">
+                        <input type="text" placeholder="Username" name="adminName" required>
                     </div>
                     <!-- Input field for password -->
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" name="adminPass">
+                        <input type="password" placeholder="Password" name="adminPass" required>
                     </div>
                     <!-- Sign-in button -->
                     <input type="submit" value="Login" class="btn solid">

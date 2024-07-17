@@ -86,12 +86,15 @@ def login():
         session.permanent=True
         username,passwd = request.form["adminName"],request.form["adminPass"]
         user = db.session.query(Admin).filter(Admin.admin_username == username).first()
-        if check_password_hash(user.admin_password,passwd):
-            session['adminLogin'] = True
-            session['adminName'] = username
-            return redirect(url_for("admin.dashboard"))
+        if user is not None:
+            if check_password_hash(user.admin_password,passwd):
+                session['adminLogin'] = True
+                session['adminName'] = username
+                return redirect(url_for("admin.dashboard"))
+            else:
+                flash("Username or password doesn't exists!")
         else:
-            flash("Username or password doesn't exists!")
+            flash("User doesn't exist!")
     return render_template("admin/index.html")
 
 @admin.route("/signup",methods=['GET','POST'])
@@ -121,8 +124,11 @@ def signup():
 
 @admin.route("/dashboard",methods=['GET','POST'])
 def dashboard():
-    username = session.get('adminName')
-    return f"<h1> Welcome {username}! </h1>"
+    if session['adminName'] is not "":
+        username = session.get('adminName')
+        return f"<h1> Welcome {username}! </h1>"
+    else:
+        return redirect(url_for("admin.login"))
 
 @admin.route("/add_donor_details",methods=['GET','POST'])
 def add_donor_csv():
