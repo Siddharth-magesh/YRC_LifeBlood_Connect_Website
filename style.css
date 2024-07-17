@@ -1,0 +1,121 @@
+.up{
+    height: 2.5rem;
+    background-color: #d14936;
+}
+.up p{
+    color: white;
+    padding-left: 2rem;
+    padding-top: 2px;
+}
+.heading{
+    margin-bottom: 2rem;
+}
+.heading h1{
+    text-align: center;
+    color: #d14936;
+}
+.pad{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.outer{
+    border: 1px solid black;
+    /*padding-top: 2rem;*/
+    padding-left: 0;
+    padding-right: 0;
+}
+/*
+.outer div{
+    margin-top: 10px;
+}
+*/
+
+.col{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+label, input{
+    display: block;
+}
+.user_first_name,
+.user_last_name{
+    display: inline-block;
+    width: 100%; 
+}
+.user_age,
+.user_date_of_birth{
+    width: 26%;
+}
+.user_blood_group{
+    width: 50%;
+}
+.user_blood_group .col{
+    gap: 50px;
+}
+.radio_option{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.user_address{
+    display: inline-block;
+    width: 50%;
+}
+.user_country,
+.user_state,
+.user_city{
+    display: inline-block;
+    width: 100%;
+}
+.outer{
+    border: 1px solid black;
+    /*padding-top: 2rem;*/
+    padding-left: 0;
+    padding-right: 0;
+}
+/*
+.outer div{
+    margin-top: 10px;
+}
+*/
+
+.col{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+label, input{
+    display: block;
+}
+.user_first_name,
+.user_last_name{
+    display: inline-block;
+    width: 100%; 
+}
+.user_age,
+.user_date_of_birth{
+    width: 26%;
+}
+.user_blood_group{
+    width: 50%;
+}
+.user_blood_group .col{
+    gap: 50px;
+}
+.radio_option{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.user_address{
+    display: inline-block;
+    width: 50%;
+}
+.user_pincode,
+.user_state,
+.user_city{
+    display: inline-block;
+    width: 100%;
+}
