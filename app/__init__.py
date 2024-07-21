@@ -3,8 +3,8 @@
 from flask import Flask
 from .extensions import db
 from .config import Config
-from .routes.main import main
-from .routes.admin import admin
+from .routes.MAIN.main import main
+from .routes.ADMIN.admin import admin
 
 def create_app(config_class = Config):
     """

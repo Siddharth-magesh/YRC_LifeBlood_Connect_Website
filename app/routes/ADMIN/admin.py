@@ -1,8 +1,8 @@
 from flask import Blueprint,flash,render_template,url_for,session,redirect,request
 from werkzeug.security import generate_password_hash,check_password_hash
-from ..models import *
-from ..extensions import db
-from ..helper import *
+from ...models import *
+from ...extensions import db
+from ...helper import *
 import os,math
 from flask_wtf import FlaskForm
 from wtforms import SubmitField,FileField
