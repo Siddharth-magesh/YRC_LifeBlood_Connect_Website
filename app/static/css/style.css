@@ -32,11 +32,11 @@
     padding-left: 0;
     padding-right: 0;
 }
-/*
+
 .outer div{
     margin-top: 10px;
 }
-*/
+
 
 .col{
     display: flex;
@@ -82,11 +82,11 @@ label, input{
     padding-left: 0;
     padding-right: 0;
 }
-/*
-.outer div{
+
+/* .outer div{
     margin-top: 10px;
-}
-*/
+} */
+
 
 .col{
     display: flex;
