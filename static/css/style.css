@@ -1,0 +1,137 @@
+.heading{
+    height: 12.6rem;
+    background-color: #86020f;
+    margin: 0;
+    color: #f9eae8;
+}
+.image{
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 26%;
+}
+.content{
+    margin-top: 22px;
+}
+.image img{
+    object-fit: cover;
+    object-position: 50% -20px;
+    height: 100%;
+    width: 100%;
+}
+
+.pad{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 26px;
+}
+
+.outer{
+    border: 1px solid black;
+    /*padding-top: 2rem;*/
+    padding-left: 0;
+    padding-right: 0;
+}
+/*
+.outer div{
+    margin-top: 10px;
+}
+*/
+
+.col{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+label, input{
+    display: block;
+}
+.user_first_name,
+.user_last_name{
+    display: inline-block;
+    width: 100%; 
+}
+.user_age,
+.user_date_of_birth{
+    width: 26%;
+}
+.user_blood_group{
+    width: 50%;
+}
+.user_blood_group .col{
+    gap: 50px;
+}
+.radio_option{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.user_address{
+    display: inline-block;
+    width: 50%;
+}
+.user_country,
+.user_state,
+.user_city{
+    display: inline-block;
+    width: 100%;
+}
+.outer{
+    border: 1px solid black;
+    /*padding-top: 2rem;*/
+    padding-left: 0;
+    padding-right: 0;
+}
+/*
+.outer div{
+    margin-top: 10px;
+}
+*/
+
+.col{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+label, input{
+    display: block;
+}
+.user_first_name,
+.user_last_name{
+    display: inline-block;
+    width: 100%; 
+}
+.user_age,
+.user_date_of_birth{
+    width: 26%;
+}
+.user_blood_group{
+    width: 50%;
+}
+.user_blood_group .col{
+    gap: 50px;
+}
+.radio_option{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.user_address{
+    display: inline-block;
+    width: 50%;
+}
+.user_pincode,
+.user_state,
+.user_city{
+    display: inline-block;
+    width: 100%;
+}
+.submit{
+    width: 140px;
+}
+.submit button{
+    width: 100%;
+    border: 1px solid hsla(0, 0%, 0%, 0.5);
+    background-color: white;
+    color: #ff0021;
+}
