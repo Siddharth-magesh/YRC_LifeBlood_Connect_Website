@@ -37,7 +37,7 @@ class Disease(db.Model):
 class Admin(db.Model):
     __tablename__ = 'admin_table'
     admin_id = db.Column(db.String(10), primary_key=True)
-    admin_name = db.Column(db.String(100))
+    admin_email = db.Column(db.String(100))
     admin_username = db.Column(db.String(100), nullable=False)
     admin_password = db.Column(db.String(500), nullable=False)
     last_login = db.Column(db.DateTime)

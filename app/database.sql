@@ -1,60 +1,56 @@
 create database YRCBloodRequest;
 use YRCBloodRequest;
 
-create table Address_ID ( 
-address_id varchar(10), 
-pincode int NOT NULL, 
-country varchar(20),
-state varchar(25),
-city varchar(25),
-address varchar(225),
-primary key (address_id)
+CREATE TABLE Address_ID (
+    address_id VARCHAR(10) PRIMARY KEY,
+    pincode INT NOT NULL,
+    country VARCHAR(20),
+    state VARCHAR(25),
+    city VARCHAR(25),
+    address VARCHAR(225)
 );
 
-create table Disease_ID (
-disease_id varchar(10),
-disease varchar(200),
-primary key (disease_id)
+CREATE TABLE Disease_ID (
+    disease_id VARCHAR(10) PRIMARY KEY,
+    disease VARCHAR(200)
 );
 
-create table admin_table (
-admin_id varchar(10) NOT NULL,
-admin_name varchar(100),
-admin_username varchar(100) NOT NULL,
-admin_password varchar(500) NOT NULL,
-last_login datetime,
-primary key (admin_id)
+CREATE TABLE admin_table (
+    admin_id VARCHAR(10) PRIMARY KEY,
+    admin_email VARCHAR(100),
+    admin_username VARCHAR(100) NOT NULL,
+    admin_password VARCHAR(500) NOT NULL,
+    last_login DATETIME
 );
 
-create table victim_request(
-name varchar(100),
-age int,
-blood_grp varchar(10) NOT NULL,
-admitted_hospital varchar(100),
-contact_number int,
-attendant_name varchar(100),
-hospital_address varchar(200),
-due_date date,
-reason varchar(150),
-request_id varchar(10),
-status varchar(25),
-donor_name varchar(100),
-donar_id varchar(10),
-primary key (request_id)
+CREATE TABLE victim_request (
+    request_id VARCHAR(10) PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    blood_grp VARCHAR(10) NOT NULL,
+    admitted_hospital VARCHAR(100) NOT NULL,
+    contact_number INT,
+    attendant_name VARCHAR(100) NOT NULL,
+    hospital_address VARCHAR(200) NOT NULL,
+    due_date DATE,
+    reason VARCHAR(150),
+    status VARCHAR(25),
+    donor_name VARCHAR(100),
+    donor_id VARCHAR(10)
 );
 
-create table donars_table (
-unique_id varchar(15) NOT NULL, 
-Name varchar(100), 
-age int NOT NULL,
-blood_grp varchar(10) NOT NULL,
-DOB date NOT NULL,
-address_id varchar(15),
-no_of_times_donated int NOT NULL,
-disease_id varchar(15),
-last_donated_date date NOT NULL,
-primary key (unique_id),
-foreign key (address_id) references Address_ID(address_id),
-foreign key (disease_id) references Disease_ID(disease_id)
+CREATE TABLE donars_table (
+    unique_id VARCHAR(15) PRIMARY KEY,
+    Name VARCHAR(100),
+    age INT NOT NULL,
+    blood_grp VARCHAR(10) NOT NULL,
+    DOB DATE NOT NULL,
+    address_id VARCHAR(15) NOT NULL,
+    no_of_times_donated INT,
+    disease_id VARCHAR(15),
+    last_donated_date DATE,
+    status VARCHAR(20) NOT NULL,
+    contact_no VARCHAR(20) NOT NULL,
+    FOREIGN KEY (address_id) REFERENCES Address_ID(address_id),
+    FOREIGN KEY (disease_id) REFERENCES Disease_ID(disease_id)
 );
-

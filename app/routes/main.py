@@ -10,3 +10,8 @@ def home():
     :return: The `render_template("index.html")` function is being returned.
     """
     return render_template("index.html")
+
+
+@main.route("/register",methods=['GET','POST'])
+def register():
+    return render_template("register.html")
