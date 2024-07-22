@@ -1,6 +1,5 @@
 create database YRCBloodRequest;
 use YRCBloodRequest;
-
 CREATE TABLE Address_ID (
     address_id VARCHAR(10) PRIMARY KEY,
     pincode INT NOT NULL,
