@@ -1,18 +1,38 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap');
+
+/* Apply Poppins font to the entire page */
+body{
+    font-family: Poppins;
+}
+
+/* Styles for the heading section including background color and text color */
 .heading{
     height: 12.6rem;
     background-color: #86020f;
     margin: 0;
     color: #f9eae8;
 }
+
+/* Styles for the image container within the heading */
 .image{
     position: relative;
     overflow: hidden;
     height: 100%;
     width: 26%;
 }
+
+/* Styles for the content area inside the heading */
 .content{
-    margin-top: 22px;
+    margin-top: 20px;
 }
+
+/* Styles for the description text inside the heading */
+.description{
+    margin-top: 14px;
+}
+
+/* Styles for the image inside the .image container */
 .image img{
     object-fit: cover;
     object-position: 50% -20px;
@@ -20,118 +40,87 @@
     width: 100%;
 }
 
+/* padding for all elements besides elements in header */
 .pad{
     padding-left: 20px;
     padding-right: 20px;
     margin-top: 26px;
 }
 
+/* Outer container styling with border and background color */
 .outer{
     border: 1px solid black;
-    /*padding-top: 2rem;*/
     padding-left: 0;
     padding-right: 0;
+    background-color: #f9eae8;
 }
 
-.outer div{
-    margin-top: 10px;
-}
-
-
+/* Flexbox alignment for column elements */
 .col{
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+/* Basic styling for labels and inputs */
 label, input{
     display: block;
 }
+
+/* Styles for user name input fields (first name and last name) */
 .user_first_name,
 .user_last_name{
-    display: inline-block;
-    width: 100%; 
-}
-.user_age,
-.user_date_of_birth{
-    width: 26%;
-}
-.user_blood_group{
-    width: 50%;
-}
-.user_blood_group .col{
-    gap: 50px;
-}
-.radio_option{
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-.user_address{
-    display: inline-block;
-    width: 50%;
-}
-.user_country,
-.user_state,
-.user_city{
     display: inline-block;
     width: 100%;
 }
-.outer{
-    border: 1px solid black;
-    /*padding-top: 2rem;*/
-    padding-left: 0;
-    padding-right: 0;
-}
 
-/* .outer div{
-    margin-top: 10px;
-} */
-
-
-.col{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-label, input{
-    display: block;
-}
-.user_first_name,
-.user_last_name{
-    display: inline-block;
-    width: 100%; 
-}
+/* Width settings for age and date of birth fields */
 .user_age,
 .user_date_of_birth{
     width: 26%;
 }
+
+/* Width settings for blood group selection section */
 .user_blood_group{
     width: 50%;
 }
+
+/* Adjust gap between columns in the blood group selection section */
 .user_blood_group .col{
     gap: 50px;
 }
+
+/* Styles for the radio button options within the blood group section */
 .radio_option{
     display: flex;
     align-items: center;
     gap: 6px;
 }
+
+/* Styles for the address field */
 .user_address{
     display: inline-block;
     width: 50%;
 }
+
+/* Width settings for pincode, state, and city fields */
 .user_pincode,
 .user_state,
 .user_city{
     display: inline-block;
     width: 100%;
 }
+
+/* Styles for the submit button container */
 .submit{
     width: 140px;
 }
+
+/* Styles for the submit button including border, background color, and text color */
 .submit button{
     width: 100%;
     border: 1px solid hsla(0, 0%, 0%, 0.5);
     background-color: white;
     color: #ff0021;
+    border-radius: 6px;
 }
