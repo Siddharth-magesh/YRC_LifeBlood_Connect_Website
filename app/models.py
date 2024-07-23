@@ -89,31 +89,41 @@ class VictimRequest(db.Model):
 # address_id, no_of_times_donated, disease_id, last_donated_date, and relationships with Address and
 # Disease entities.
 class Donor(db.Model):
-    __tablename__ = 'donars_table'
+    __tablename__ = 'donors_table'
     unique_id = db.Column(db.String(15), primary_key=True)
     Name = db.Column(db.String(100))
     age = db.Column(db.Integer, nullable=False)
     blood_grp = db.Column(db.String(10), nullable=False)
     DOB = db.Column(db.Date, nullable=False)
     address_id = db.Column(db.String(15), db.ForeignKey('Address_ID.address_id'),nullable=False)
-    no_of_times_donated = db.Column(db.Integer)
     disease_id = db.Column(db.String(15), db.ForeignKey('Disease_ID.disease_id'))
-    last_donated_date = db.Column(db.Date)
-    status = db.Column(db.String(20),nullable=False)
+    marital_status = db.Column(db.String(20),nullable=False)
     contact_no = db.Column(db.String(20),nullable=False)
     address = db.relationship('Address', backref=db.backref('donors', lazy=True))
     disease = db.relationship('Disease', backref=db.backref('donors', lazy=True))
 
-    def __init__(self, unique_id, name, age, blood_grp, dob, address_id, no_of_times_donated=None, 
-                 disease_id=None, last_donated_date=None, status=None, contact_no=None):
+    def __init__(self, unique_id, name, age, blood_grp, dob, address_id, marital_status, 
+                 disease_id=None, contact_no=None):
         self.unique_id = unique_id
-        self.name = name
+        self.Name = name
         self.age = age
         self.blood_grp = blood_grp
-        self.dob = dob
+        self.DOB = dob
         self.address_id = address_id
-        self.no_of_times_donated = no_of_times_donated
         self.disease_id = disease_id
-        self.last_donated_date = last_donated_date
-        self.status = status
+        self.marital_status = marital_status
         self.contact_no = contact_no
+
+class DonorBloodDetails(db.Model):
+    __tablename__ = 'donor_blood_details'
+    
+    unique_id = db.Column(db.String(15), db.ForeignKey('donors_table.unique_id'),primary_key=True,  nullable=False)
+    no_of_times_donated = db.Column(db.Integer, nullable=False)
+    last_donated_date = db.Column(db.Date, nullable=True)
+    donor_blood_status = db.Column(db.String(10), nullable=True)
+    
+    def __init__(self, unique_id, no_of_times_donated, last_donated_date, donor_status):
+        self.unique_id = unique_id
+        self.no_of_times_donated = no_of_times_donated
+        self.last_donated_date = last_donated_date
+        self.donor_blood_status = donor_status

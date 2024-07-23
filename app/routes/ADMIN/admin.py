@@ -10,6 +10,8 @@ from wtforms.validators import InputRequired
 from werkzeug.utils import secure_filename
 import pandas as pd
 import string,random
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 # The line `admin = Blueprint("admin",__name__,url_prefix="/admin")` in the code snippet is creating a
 # Blueprint object named "admin" in the Flask application.
@@ -19,6 +21,30 @@ admin = Blueprint("admin",__name__,url_prefix="/admin")
 class AddDonorDetails(FlaskForm):
     new_donor_file = FileField("Donor Details File",validators=[InputRequired()])
     submit = SubmitField("Add")
+
+def add_blood_details(path,unique_ids):
+    csvFile = pd.read_csv(path)
+    blood_donated_times = [0 if math.isnan(x) else int(x) for x in csvFile['No. of times donated:'].tolist()]
+    blood_donated_dates = csvFile["Last Blood Donated Date:"]
+    last_donated = convert_to_date(blood_donated_dates)
+    current_date = date.today()
+    donor_blood_status = []
+    for donated_date in last_donated:
+        if donated_date is None:
+            donor_blood_status.append("Active")
+        elif current_date >= donated_date + relativedelta(months=3):
+            donor_blood_status.append("Active")
+        else:
+            donor_blood_status.append("Inactive")
+    for i in range(len(unique_ids)):
+        new_donor_details = DonorBloodDetails(
+            unique_id= unique_ids[i],
+            no_of_times_donated= blood_donated_times[i],
+            last_donated_date= last_donated[i],
+            donor_status= donor_blood_status[i]
+        )
+        db.session.add(new_donor_details)
+        db.session.commit()
 
 def add_address(path,address_ids):
     """
@@ -95,7 +121,7 @@ def login():
                 flash("Username or password doesn't exists!")
         else:
             flash("User doesn't exist!")
-    return render_template("admin/index.html")
+    return render_template("ADMIN/index.html")
 
 @admin.route("/signup",methods=['GET','POST'])
 def signup():
@@ -120,11 +146,11 @@ def signup():
                 flash("Passwords doesn't match!")
         else:
             flash("Username already exists!")
-    return render_template("admin/index.html")
+    return render_template("ADMIN/index.html")
 
 @admin.route("/dashboard",methods=['GET','POST'])
 def dashboard():
-    if session['adminName'] is not "":
+    if session['adminName'] != "":
         username = session.get('adminName')
         return f"<h1> Welcome {username}! </h1>"
     else:
@@ -155,13 +181,10 @@ def add_donor_csv():
                 donors_dob = convert_to_date(csvFile["Date of Birth:"])
                 donors_status = csvFile["Status:"]
                 donors_contact_no = csvFile["Personal Contact Number:"]
-                # blood_donated = csvFile["Donated Blood Already :"]
-                blood_donated_dates = csvFile["Last Blood Donated Date:"]
-                blood_donated_times = [0 if math.isnan(x) else int(x) for x in csvFile['No. of times donated:'].tolist()]
+                #blood_donated = csvFile["Donated Blood Already :"]
                 address_ids = ["AD"+"".join(random.sample(string.ascii_uppercase+string.digits,k=6)) for i in range(len(donor_names))]
                 unique_ids = ["U"+"".join(random.sample(string.ascii_uppercase+string.digits,k=7)) for i in range(len(donor_names))]
                 disease_ids = ["D"+"".join(random.sample(string.ascii_uppercase+string.digits,k=7)) for i in range(len(donor_names))]
-                last_donated = convert_to_date(blood_donated_dates)
                 # Adding Address to DB 
                 add_address(os.path.join(os.path.abspath("app/static/files/"),csv_filename),address_ids)
                 # Adding Disease details to DB
@@ -170,20 +193,20 @@ def add_donor_csv():
                 for i in range(len(unique_ids)):
                     new_donor = Donor(
                         unique_id = unique_ids[i],
-                        Name = donor_names[i],
+                        name = donor_names[i],
                         age = int(donors_age[i]),
                         blood_grp = donors_blood_grp[i],
-                        DOB = donors_dob[i],
+                        dob = donors_dob[i],
                         address_id = address_ids[i],
-                        no_of_times_donated = blood_donated_times[i],
                         disease_id = disease_ids[i],
-                        last_donated_date = last_donated[i],
-                        status = donors_status[i],
+                        marital_status = donors_status[i],
                         contact_no = str(donors_contact_no[i])
                     )
                     db.session.add(new_donor)
                     db.session.commit()
+                # Adding Blood details to DB
+                add_blood_details(os.path.join(os.path.abspath("app/static/files/"),csv_filename),unique_ids)
                 flash("Details added successfully!")
             except Exception as e:
                 flash(e)
-    return render_template("admin/donor_details.html",form=form)
+    return render_template("ADMIN/donor_details.html",form=form)
